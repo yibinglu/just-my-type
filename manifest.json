@@ -6,10 +6,19 @@
     "background": {
         "service_worker": "background.js"
     },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"]
+        }
+    ],
     "permissions": [
+        "scripting",
+        "activeTab",
         "storage"
     ],
     "action": {
+        "default_title": "JustMyType",
         "default_popup": "popup.html",
         "default_icon": {
             "16": "/images/get_started16.png",
