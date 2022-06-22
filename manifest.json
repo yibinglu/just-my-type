@@ -20,8 +20,7 @@
         "scripting",
         "activeTab",
         "storage",
-        "tabs",
-        "browserAction"
+        "tabs"
     ],
     "action": {
         "default_title": "JustMyType",

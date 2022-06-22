@@ -1,4 +1,6 @@
 // background.js
+/* global chrome */
+
 console.log('background.js running!')
 
 chrome.action.onClicked.addListener(iconClicked)
