@@ -3,11 +3,23 @@
 
 console.log('content.js running!')
 
-chrome.runtime.onMessage.addListener(gotMessage)
-
-function gotMessage (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(gotToggleMessage)
+function gotToggleMessage (request, sender, sendResponse) {
+  // receive message from popup that toggle has been switched
   const toggle = request.message
   greyText(toggle)
+}
+
+// get mouse click coordinates
+document.onclick = function (e) {
+  const x = e.pageX
+  const y = e.pageY
+  console.log(x, y)
+}
+
+// detect which element clicked on
+window.onclick = e => {
+  console.log(e.target)
 }
 
 function greyText (toggle) {
@@ -17,7 +29,6 @@ function greyText (toggle) {
     // const originalColor = paragraphs[i].style.color
     if (toggle) {
       paragraphs[i].style.color = '#B3B3B3'
-      console.log('grey')
     } else {
       paragraphs[i].style.color = '#000000'
     }
@@ -28,7 +39,6 @@ function greyText (toggle) {
     // const originalColor = lists[i].style.color
     if (toggle) {
       lists[i].style.color = '#B3B3B3'
-      console.log('grey')
     } else {
       lists[i].style.color = '#000000'
     }
