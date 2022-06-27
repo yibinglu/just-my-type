@@ -2,25 +2,12 @@
 /* global chrome */
 
 let toggle = false // fix bug where toggle doesn't reset
-let selectedTextArray = []
+let selectedTextArray
 
 chrome.runtime.onMessage.addListener(gotToggleMessage)
 
-// get mouse click coordinates
-// document.onclick = e => {
-//   const x = e.pageX
-//   const y = e.pageY
-//   console.log(x, y)
-// }
-
-// detect which element clicked on
-// window.onclick = e => {
-//   if (e.target.tagName === 'P' && toggle === true) {
-//     selectedTextArray = e.target.textContent.split('')
-//   }
-// }
-
-document.addEventListener('click', getElement)
+// WORKING VERSION (PRINTS WHEN CLICKED ON TEXT) /////////////////////////////
+// document.addEventListener('click', getElement)
 
 // function getElement (e) {
 //   if (e.target.tagName === 'P' && toggle === true) {
@@ -28,12 +15,19 @@ document.addEventListener('click', getElement)
 //     console.log(selectedTextArray)
 //   }
 // }
+/// //////////////////////////////////////////////////////////////////////////
 
-function getElement (e) {
-  if (e.target.tagName === 'P' && toggle === true) {
-    selectedTextArray = e.target.textContent.split('')
-    console.log(selectedTextArray)
-  }
+getText(function (result) {
+  selectedTextArray = result
+  console.log(selectedTextArray)
+})
+
+function getText (callback) {
+  document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'P' && toggle === true) {
+      callback(e.target.textContent.split(''))
+    }
+  })
 }
 
 function gotToggleMessage (request, sender, sendResponse) {
