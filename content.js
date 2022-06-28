@@ -6,29 +6,51 @@ let selectedTextArray
 
 chrome.runtime.onMessage.addListener(gotToggleMessage)
 
-// WORKING VERSION (PRINTS WHEN CLICKED ON TEXT) /////////////////////////////
-// document.addEventListener('click', getElement)
+// document.addEventListener('keydown', function (e) {
+// })
 
-// function getElement (e) {
-//   if (e.target.tagName === 'P' && toggle === true) {
-//     selectedTextArray = e.target.textContent.split('')
-//     console.log(selectedTextArray)
-//   }
+// CALLBACK VER.
+// getText(function (result) {
+//   selectedTextArray = result
+//   console.log(selectedTextArray)
+// })
+
+// function getText (callback) {
+//   document.addEventListener('click', (e) => {
+//     if (e.target.tagName === 'P' && toggle === true) {
+//       callback(e.target.textContent.split(''))
+//     }
+//   })
 // }
-/// //////////////////////////////////////////////////////////////////////////
 
-getText(function (result) {
-  selectedTextArray = result
-  console.log(selectedTextArray)
+// PROMISE VER.
+document.addEventListener('click', (e) => {
+  if (e.target.tagName === 'P' & toggle === true) {
+    getText(e.target.textContent.split(''))
+      .then(function (result) {
+        selectedTextArray = result
+        console.log(selectedTextArray)
+      })
+  }
 })
 
-function getText (callback) {
-  document.addEventListener('click', (e) => {
-    if (e.target.tagName === 'P' && toggle === true) {
-      callback(e.target.textContent.split(''))
-    }
+function getText (text) {
+  return new Promise((resolve, reject) => {
+    resolve(text)
   })
 }
+
+// ASYNC/AWAIT VER.
+// async function tester (text) {
+//   const result = await getText(text)
+//   return result
+// }
+
+// document.addEventListener('click', (e) => {
+//   if (e.target.tagName === 'P' & toggle === true) {
+//     tester(e.target.textContent.split(''))
+//   }
+// })
 
 function gotToggleMessage (request, sender, sendResponse) {
   // receive message from popup that toggle has been switched
