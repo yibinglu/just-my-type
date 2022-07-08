@@ -1,4 +1,4 @@
-# just-my-type
+# JustMyType
 ## What Is It?
 A chrome extension that allows users to practice typing with the text on webpages. Practicing on typing websites can feel boring and tedious since the words don't actually have any meaning, causing people to give up quickly. With JustMyType, users will be able to practice their typing and read page content simultaneously. This is especially useful for students because typing out what they're reading will help them retain information better rather than if they were to simply skim the page.
 
@@ -11,6 +11,6 @@ There is an issue with the text selection/user input that I'm currently trying t
 ## Future Plans/Small Bug Fixes 
 - Include a timer
 - Have a live words-per-minute tracker
-- Extend text to practice on beyond <p> tags
+- Extend text to practice on beyond '<p>' tags
 - Make the popup visually pleasing rather than just having the toggle switch
 - Fix bug where the toggle resets each time you click of the popup window 
