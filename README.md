@@ -8,9 +8,9 @@ Currently, the extension is able to turn all the text that can be practiced on t
 ## What I'm Working On
 There is an issue with the text selection/user input that I'm currently trying to resolve. The issue stems from the way I have set up my async functions with async/await and event handlers. Every time the user clicks on a block of text, it reruns the entire function that lets the user input characters, even if they are already half way through a previous paragraph. So if the user clicks on two different paragraphs, it will always say the user is typing it wrong because it is checking each input key with two different paragraphs.
 
-## Future Plans/Small Bug Fixes 
+## Future Plans/Bug Fixes 
 - Include a timer
 - Have a live words-per-minute tracker
-- Extend text to practice on beyond '<p>' tags
+- Extend text to practice on beyond paragraph tags
 - Make the popup visually pleasing rather than just having the toggle switch
 - Fix bug where the toggle resets each time you click of the popup window 
