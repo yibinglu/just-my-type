@@ -3,40 +3,40 @@
 
 let toggle = false // fix bug where toggle doesn't reset
 let selectedTextArray
+let isSelected = false
 
 chrome.runtime.onMessage.addListener(gotToggleMessage)
 
-// CALLBACK VER.
-// getText(function (result) {
-//   selectedTextArray = result
-//   console.log(selectedTextArray)
-// })
-
-// function getText (callback) {
-//   document.addEventListener('click', (e) => {
-//     if (e.target.tagName === 'P' && toggle === true) {
-//       callback(e.target.textContent.split(''))
-//     }
-//   })
+// DOES NOT WORK PROPERLY
+// if (toggle === true) {
+//   window.onkeydown = function (e) {
+//     return !(e.keyCode === 32)
+//   }
 // }
 
-// PROMISE VER.
-document.addEventListener('click', (e) => {
-  if (e.target.tagName === 'P' & toggle === true) {
-    getText(e.target.textContent.split(''))
-      .then(function (result) {
-        selectedTextArray = result
-      })
+document.addEventListener('click', selectText)
+console.log('clicked')
+
+async function selectText (e) {
+  if (toggle === true) {
+    if (e.target.tagName === 'P') {
+      getText(e.target.textContent.split(''))
+        .then(function (result) {
+          selectedTextArray = result
+          console.log(selectedTextArray)
+        })
+    }
+    await processTextArray(selectedTextArray)
+    console.log('selected ' + isSelected)
+    return false
   }
-  console.log(selectedTextArray)
-  processTextArray(selectedTextArray)
-})
+}
 
 async function processTextArray (array) {
   if (array !== undefined) {
     for (const char of array) {
+      console.log(array)
       const keyPressed = await getKeyPressed()
-      console.log('keyPressed: ' + keyPressed)
       console.log('char: ' + char)
       if (keyPressed === char) {
         console.log('correct')
@@ -44,6 +44,7 @@ async function processTextArray (array) {
         console.log('incorrect')
       }
     }
+    return false
   }
 }
 
